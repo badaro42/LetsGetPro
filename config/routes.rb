@@ -1,4 +1,6 @@
 LetsGetPro::Application.routes.draw do
+  resources :cv_entries
+
   resources :contacts
 
   resources :company_owners
