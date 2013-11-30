@@ -1,4 +1,6 @@
 LetsGetPro::Application.routes.draw do
+  resources :company_owners
+
   resources :companies
 
   resources :articles
