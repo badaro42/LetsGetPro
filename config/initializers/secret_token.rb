@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-LetsGetPro::Application.config.secret_key_base = '886889933c3950fcc103da7cf731d42cc4b9b4ee0f18d97f937183778cca4cbcfd2a3a7ef49377f3a91dbafa634af4ec48d345fc190fe884b1bb293396f5bd81'
+LetsGetPro::Application.config.secret_key_base = 'e8435bfd86c217c1518ac09f6665f89bc0f674c3fae1219c1ca292ee079960e98b84f4715538c9779915cfe7d9851fc2a0a6ecf93ec04dbc087407ecf7086d02'

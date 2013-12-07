@@ -1,19 +1,17 @@
 LetsGetPro::Application.routes.draw do
-  resources :tasks
 
-  resources :cv_entries
 
-  resources :contacts
 
-  resources :company_owners
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'register' => 'devise/sessions#create', :as => :user_session
+    delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 
-  resources :companies
 
-  resources :articles
+  #devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
-  resources :users
-
-  root :to => 'articles#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
