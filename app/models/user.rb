@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   #attr_accessible :email, :password, :password_confirmation, :name, :gender, :about_me, :photo, :birth_date
+  has_many :articles
+  has_many :contacts
 
 end

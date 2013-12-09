@@ -1,5 +1,7 @@
 LetsGetPro::Application.routes.draw do
 
+  resources :contacts
+
   resources :articles
 
   devise_for :users
@@ -8,6 +10,7 @@ LetsGetPro::Application.routes.draw do
   unauthenticated :user do
     root :to => 'welcome#index', :as => "profile"
   end
+
 
   authenticated :user do
     root :to => 'articles#index',  :as => "unauthenticated"
