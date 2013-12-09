@@ -2,10 +2,15 @@ LetsGetPro::Application.routes.draw do
 
 
 
+  resources :articles
+
   root :to => 'welcome#index'
 
 
   devise_for :users
+  resources :users, :only => [:show]
+
+  get 'users' => 'users#show'
 
 
 
