@@ -10,7 +10,7 @@ LetsGetPro::Application.routes.draw do
   end
 
   authenticated :user do
-    root :to => 'articles#new',  :as => "unauthenticated"
+    root :to => 'articles#index',  :as => "unauthenticated"
   end
 
 
