@@ -1,17 +1,20 @@
 LetsGetPro::Application.routes.draw do
 
-
-
   resources :articles
-
-  root :to => 'welcome#index'
-
 
   devise_for :users
   resources :users, :only => [:show]
 
-  get 'users' => 'users#show'
+  unauthenticated :user do
+    root :to => 'welcome#index', :as => "profile"
+  end
 
+  authenticated :user do
+    root :to => 'articles#new',  :as => "unauthenticated"
+  end
+
+
+  get 'users/:id' => 'users#show'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

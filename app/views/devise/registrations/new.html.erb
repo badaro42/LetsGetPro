@@ -28,10 +28,11 @@
       <%= f.text_area :about_me %></div>
 
     <div>
-      <%= radio_button_tag(:gender, "male") %>
-      <%= label_tag(:gender, "Masculino") %><br/>
-      <%= radio_button_tag(:gender, "female") %>
-      <%= label_tag(:gender, "Feminino") %>
+      <%= f.radio_button :gender, 'male' %>
+      <%= f.label :gender, 'Masculino', :value => 'male' %>
+      <br/>
+      <%= f.radio_button :gender, 'female' %>
+      <%= f.label :gender, 'Feminino', :value => 'female' %>
     </div>
 
     <div><%= f.label :photo %>
