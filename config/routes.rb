@@ -24,6 +24,7 @@ LetsGetPro::Application.routes.draw do
 
 
   get 'users/:id' => 'users#show'
+  get 'about' => 'welcome#about'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
