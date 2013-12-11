@@ -1,0 +1,32 @@
+<h1>Listing cv_entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cv_entries.each do |cv_entry| %>
+      <tr>
+        <td><%= Company.find(cv_entry.company_id).name %></td>
+        <td><%= cv_entry.start_date %></td>
+        <td><%= cv_entry.end_date %></td>
+        <td><%= link_to 'Show', cv_entry %></td>
+        <td><%= link_to 'Edit', edit_cv_entry_path(cv_entry) %></td>
+        <td><%= link_to 'Destroy', cv_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Add Task', new_task_path,  :method => :get %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cv entry', new_cv_entry_path %>

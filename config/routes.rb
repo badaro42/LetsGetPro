@@ -1,5 +1,9 @@
 LetsGetPro::Application.routes.draw do
 
+  resources :tasks
+
+  resources :cv_entries
+
   resources :companies
 
   resources :contacts
