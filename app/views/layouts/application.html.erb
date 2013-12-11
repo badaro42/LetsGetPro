@@ -8,13 +8,20 @@
 </head>
 <body>
 <div id="user_nav">
+  <div class="right">
+    <div class="logo">
+      <%= image_tag "logo.png" %>
+    </div>
+    <div class="search">
+      <input type="text" id="search-box" placeholder="insert keywords"/>
+      <button class="btn-with-shadow" id="search-btn" onClick="">Search</button>
+    </div>
+  </div>
   <% if user_signed_in? %>
       <% @user = current_user.id %>
-      Signed in as <%= current_user.name %>. Not you?
+      Ola <%= current_user.name %>.
       <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>  |
       <%= link_to 'Show Info', user_path(@user), :method => :get %>
-  <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
   <% end %>
 </div>
 <% if user_signed_in? %>
@@ -23,6 +30,7 @@
     <%= button_to 'Contactos', contacts_path, :method => :get %>
     <%= button_to 'Empresas', companies_path, :method => :get %>
 <% end %>
+
 
 <%= yield %>
 
