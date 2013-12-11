@@ -4,7 +4,8 @@ class CvEntriesController < ApplicationController
   # GET /cv_entries
   # GET /cv_entries.json
   def index
-    @cv_entries = CvEntry.all
+    @user_id = current_user.id
+    @cv_entries = CvEntry.where('user_id' => @user_id)
   end
 
   # GET /cv_entries/1

@@ -44,7 +44,7 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
+        format.html { redirect_to @contact, notice: 'Request accepted!' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
