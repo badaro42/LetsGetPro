@@ -1,5 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<!-- todas as tarefas que correspondem à entrada seleccionada -->
+
+<% @tasks = Task.where('CVEntry_id' => @cv_entry.id) %>
+<% @tasks.each do |task| %>
+
+    <p><%= task.position %></p>
+
+<% end %>
+
+<p></p>
+
 <p>
   <strong>User:</strong>
   <%= @cv_entry.user_id %>
@@ -19,6 +30,7 @@
   <strong>End date:</strong>
   <%= @cv_entry.end_date %>
 </p>
+
 
 <%= link_to 'Edit', edit_cv_entry_path(@cv_entry) %> |
 <%= link_to 'Back', cv_entries_path %>

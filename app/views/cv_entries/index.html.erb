@@ -18,7 +18,7 @@
         <td><%= Company.find(cv_entry.company_id).name %></td>
         <td><%= cv_entry.start_date %></td>
         <td><%= cv_entry.end_date %></td>
-        <td><%= link_to 'Show', cv_entry %></td>
+        <td><%= link_to 'Show Tasks', cv_entry %></td>
         <td><%= link_to 'Edit', edit_cv_entry_path(cv_entry) %></td>
         <td><%= link_to 'Destroy', cv_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Add Task', new_task_path(:cv_entry => cv_entry.id) %></td>
