@@ -33,7 +33,7 @@ class TasksController < ApplicationController
     @task.CVEntry_id = $cv_id.id
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to "/cv_entries", notice: 'Task was successfully created.' }
         format.json { render action: 'show', status: :created, location: @task }
       else
         format.html { render action: 'new' }

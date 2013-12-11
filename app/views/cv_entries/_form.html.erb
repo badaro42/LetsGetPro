@@ -17,7 +17,7 @@
   </div>
   <div class ="create company">
     <%= link_to 'New Company', new_company_path %>
-    </div>
+    </div> <br />
   <div class="field">
     <%= f.label :start_date %><br>
     <%= f.date_select :start_date %>
@@ -27,6 +27,6 @@
     <%= f.date_select :end_date %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create New Entry" %>
   </div>
 <% end %>

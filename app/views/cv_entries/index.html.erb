@@ -1,32 +1,22 @@
-<h1>Listing cv_entries</h1>
+<h1>Curriculum Vitae</h1> <br />
 
-<table>
-  <thead>
-    <tr>
-      <th>Company</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cv_entries.each do |cv_entry| %>
-      <tr>
-        <td><%= Company.find(cv_entry.company_id).name %></td>
-        <td><%= cv_entry.start_date %></td>
-        <td><%= cv_entry.end_date %></td>
-        <td><%= link_to 'Show Tasks', cv_entry %></td>
-        <td><%= link_to 'Edit', edit_cv_entry_path(cv_entry) %></td>
-        <td><%= link_to 'Destroy', cv_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add Task', new_task_path(:cv_entry => cv_entry.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div>
+  <% @ordered_entries = @cv_entries.sort_by { |obj| obj.start_date } %>
+  <% @ordered_entries.reverse! %>
+  <% @ordered_entries.each do |cv_entry| %>
+    <div>
+      <b><%= cv_entry.start_date.year %> - <td><%= cv_entry.end_date.year %></b>:
+        <%= Company.find(cv_entry.company_id).name %> (<%= link_to 'Add Task', new_task_path(:cv_entry => cv_entry.id)%> |
+        <%= link_to 'Destroy', cv_entry, method: :delete, data: { confirm: 'Are you sure?' } %>)
+      <% @tasks = Task.where('CVEntry_id' => cv_entry.id) %>
+      <ul>
+      <% @tasks.each do |task| %>
+          <li><b><%= task.position %></b>, <%= task.description %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
 <br>
 
-<%= link_to 'New Cv entry', new_cv_entry_path %>
+<%= button_to 'New Entry', new_cv_entry_path, method: :get %>
