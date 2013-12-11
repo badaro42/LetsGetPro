@@ -29,7 +29,7 @@ class CvEntriesController < ApplicationController
 
     respond_to do |format|
       if @cv_entry.save
-        format.html { redirect_to @cv_entry, notice: 'Cv entry was successfully created.' }
+        format.html { redirect_to "/cv_entries", notice: 'Cv entry was successfully created.' }
         format.json { render action: 'show', status: :created, location: @cv_entry }
       else
         format.html { render action: 'new' }

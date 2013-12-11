@@ -17,7 +17,11 @@
       <tr>
         <td><%= User.find(contact.user_requesting_id).name %></td>
         <td><%= User.find(contact.target_user_id).name %></td>
-        <td><%= contact.state %></td>
+        <% if contact.state == true %>
+            <td><%= "Pending" %></td>
+        <% else %>
+            <td><%= "Accepted" %></td>
+        <% end %>
         <td><%= link_to 'Show', contact %></td>
         <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
         <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>

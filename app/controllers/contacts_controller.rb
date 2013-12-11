@@ -26,6 +26,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     @contact.user_requesting_id = current_user.id
+    @contact.state = true
 
     respond_to do |format|
       if @contact.save
@@ -70,6 +71,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:target_user_id, :state)
+      params.require(:contact).permit(:target_user_id)
     end
 end

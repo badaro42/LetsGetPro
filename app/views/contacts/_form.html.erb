@@ -15,10 +15,6 @@
     <%= f.label :target_user_id %><br>
     <%= f.collection_select(:target_user_id, User.all, :id, :name)  %>
   </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.check_box :state %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
