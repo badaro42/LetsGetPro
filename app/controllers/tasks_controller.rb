@@ -3,6 +3,9 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
+
+  $cv_id = 0
+
   def index
     @tasks = Task.all
   end
@@ -15,6 +18,8 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @cv_entry = CvEntry.find(params[:cv_entry])
+    $cv_id = @cv_entry
   end
 
   # GET /tasks/1/edit
@@ -25,7 +30,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
+    @task.CVEntry_id = $cv_id.id
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -69,6 +74,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:CVEntry_id, :position, :description)
+      params.require(:task).permit(:position, :description)
     end
 end

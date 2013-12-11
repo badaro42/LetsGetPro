@@ -72,4 +72,5 @@ class CvEntriesController < ApplicationController
     def cv_entry_params
       params.require(:cv_entry).permit(:company_id, :start_date, :end_date)
     end
+
 end

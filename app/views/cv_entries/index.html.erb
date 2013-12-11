@@ -21,7 +21,7 @@
         <td><%= link_to 'Show', cv_entry %></td>
         <td><%= link_to 'Edit', edit_cv_entry_path(cv_entry) %></td>
         <td><%= link_to 'Destroy', cv_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= button_to 'Add Task', new_task_path,  :method => :get %></td>
+        <td><%= link_to 'Add Task', new_task_path(:cv_entry => cv_entry.id) %></td>
       </tr>
     <% end %>
   </tbody>
