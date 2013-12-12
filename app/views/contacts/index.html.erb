@@ -10,8 +10,14 @@
   <% @total.each do |contact| %>
       <ul>
         <% if contact.state == false %>
-            <li><%= User.find(contact.target_user_id).name %>
-              <%= link_to 'Cancel Friendship', contact, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+            <li>
+              <% if contact.user_requesting_id != current_user.id %>
+                  <%= User.find(contact.user_requesting_id).name %>
+              <% else %>
+                  <%= User.find(contact.target_user_id).name %>
+              <% end %>
+              <%= link_to 'Cancel Friendship', contact, method: :delete, data: {confirm: 'Are you sure?'} %>
+            </li>
         <% end %>
       </ul>
   <% end %>
