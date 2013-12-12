@@ -8,24 +8,28 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="user_nav">
-    <% if user_signed_in? %>
+  <% if user_signed_in? %>
+      <div class="user_nav">
         <% @user = current_user.id %>
-        Ola <%= current_user.name %>.
-        <%= button_to 'Sign out', destroy_user_session_path, :method => :delete %>
-        <%= button_to 'Show Info', user_path(@user), :method => :get %>
+        <p>Olá <b><%= current_user.name %></b>.</p>
+        <%= button_to 'Sign out', destroy_user_session_path, :method => :delete, :class => "button_to" %>
+        <%= button_to 'Show Info', user_path(@user), :method => :get, :class => "button_to" %>
         <%= form_tag({:controller => "/welcome", :action => "search"}, :method => :get) do %>
             <%= text_field_tag :search, nil, placeholder: 'insert keywords' %>
+            <%= submit_tag("Search", :class => "button_to") %>
         <% end %>
-    <% end %>
-    </div>
-    <%= image_tag "logo.png", :class => "logo_image" %>
-  <div class="main">
+      </div>
+  <% end %>
+  <%= image_tag "logo.png", :class => "logo_image" %>
+  <div>
     <% if user_signed_in? %>
-        <%= button_to 'Articles', articles_path, :method => :get %>
-        <%= button_to 'Curriculum Vitae', cv_entries_path, :method => :get %>
-        <%= button_to 'Contactos', contacts_path, :method => :get %>
-        <%= button_to 'Empresas', companies_path, :method => :get %>
+        <div id="menu-bar">
+          <%= button_to 'Articles', articles_path, :method => :get, :class => "button_to" %>
+          <%= button_to 'Curriculum Vitae', cv_entries_path, :method => :get, :class => "button_to" %>
+          <%= button_to 'Contactos', contacts_path, :method => :get, :class => "button_to" %>
+          <%= button_to 'Empresas', companies_path, :method => :get, :class => "button_to" %>
+          <%= button_to 'About', about_path, :method => :get, :class => "button_to" %>
+        </div>
     <% end %>
 
     <div class="container">
@@ -33,6 +37,5 @@
     </div>
   </div>
   </body>
-  <%= button_to 'About', about_path, :method => :get %>
 </div>
 </html>

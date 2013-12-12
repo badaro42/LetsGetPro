@@ -7,7 +7,7 @@ body {
   background-color: rgb(170, 170, 170);
 }
 
-@media (min-width: 950px) {
+@media (min-width: 800px) {
   .main {
     margin: 0 auto;
     width: 800px;
@@ -23,16 +23,26 @@ body {
 .main {
   background-color: #033649;
 }
-
-/*tamanho de ecra normal*/
-@media (min-width: 950px) {
-  .main {
-    margin: 0 auto;
-    width: 800px;
-    border-radius: 5px;
-    padding: 5px;
-  }
+.button_to:hover {
+  background-color: #444;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 16px;
 }
+
+.button_to {
+  color: black;
+  font-size: 16px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0px;
+}
+
+#menu-bar {
+
+  margin-bottom: 10px;
+}
+
 
 .container {
   background-color: #E8DDCB;
