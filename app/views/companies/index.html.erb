@@ -7,9 +7,7 @@
         <%= link_to 'Show', company %>, <%= link_to 'Edit', edit_company_path(company) %>, <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% @entries = CvEntry.where('company_id' => company.id) %>
             <% @entries.each do |cv_entry| %>
-               <li><% User.find(cv_entry.user_id).name %></li>
-                <% puts('estou aqui') %>
-                 <% puts(User.find(cv_entry.user_id).name) %>
+               <li><%= User.find(cv_entry.user_id).name %></li>
             <% end %>
       <br><br>
     <% end %>
