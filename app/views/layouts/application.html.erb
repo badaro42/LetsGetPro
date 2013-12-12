@@ -1,44 +1,38 @@
 <!DOCTYPE html>
 <html>
-<div class = "main">
-<head>
-  <title>LetsGetPro</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div id="user_nav">
-  <div class="right">
-    <div class="logo">
-      <%= image_tag "logo.png", :class => "logo_image" %>
-    </div>
-  </div>
-  <div class="main">
-  <% if user_signed_in? %>
-      <% @user = current_user.id %>
-      Ola <%= current_user.name %>.
-      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>  |
-      <%= link_to 'Show Info', user_path(@user), :method => :get %>
-      <div class="search">
-        <%= form_tag( {:controller => "/welcome", :action => "search"}, :method => :get) do %>
+<div class="main">
+  <head>
+    <title>LetsGetPro</title>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="user_nav">
+    <% if user_signed_in? %>
+        <% @user = current_user.id %>
+        Ola <%= current_user.name %>.
+        <%= button_to 'Sign out', destroy_user_session_path, :method => :delete %>
+        <%= button_to 'Show Info', user_path(@user), :method => :get %>
+        <%= form_tag({:controller => "/welcome", :action => "search"}, :method => :get) do %>
             <%= text_field_tag :search, nil, placeholder: 'insert keywords' %>
         <% end %>
-      </div>
-  <% end %>
-</div>
-<% if user_signed_in? %>
-    <%= button_to 'Articles', articles_path, :method => :get %>
-    <%= button_to 'Curriculum Vitae', cv_entries_path, :method => :get %>
-    <%= button_to 'Contactos', contacts_path, :method => :get %>
-    <%= button_to 'Empresas', companies_path, :method => :get %>
-<% end %>
-
-  <div class="container">
-<%= yield %>
-</div>
+    <% end %>
     </div>
-</body>
-<%= button_to 'About', about_path, :method => :get %>
+    <%= image_tag "logo.png", :class => "logo_image" %>
+  <div class="main">
+    <% if user_signed_in? %>
+        <%= button_to 'Articles', articles_path, :method => :get %>
+        <%= button_to 'Curriculum Vitae', cv_entries_path, :method => :get %>
+        <%= button_to 'Contactos', contacts_path, :method => :get %>
+        <%= button_to 'Empresas', companies_path, :method => :get %>
+    <% end %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </div>
+  </body>
+  <%= button_to 'About', about_path, :method => :get %>
 </div>
 </html>
