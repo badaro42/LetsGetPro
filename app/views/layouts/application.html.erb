@@ -13,16 +13,16 @@
     <div class="logo">
       <%= image_tag "logo.png" %>
     </div>
-    <div class="search">
-      <input type="text" id="search-box" placeholder="insert keywords"/>
-      <button class="btn-with-shadow" id="search-btn" onClick="">Search</button>
-    </div>
   </div>
   <% if user_signed_in? %>
       <% @user = current_user.id %>
       Ola <%= current_user.name %>.
       <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>  |
       <%= link_to 'Show Info', user_path(@user), :method => :get %>
+      <div class="search">
+        <input type="text" id="search-box" placeholder="insert keywords"/>
+        <button class="btn-with-shadow" id="search-btn" onClick="">Search</button>
+      </div>
   <% end %>
 </div>
 <% if user_signed_in? %>
