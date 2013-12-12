@@ -20,8 +20,12 @@
       <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>  |
       <%= link_to 'Show Info', user_path(@user), :method => :get %>
       <div class="search">
-        <input type="text" id="search-box" placeholder="insert keywords"/>
-        <button class="btn-with-shadow" id="search-btn" onClick="">Search</button>
+        <%= form_tag( {:controller => "/welcome", :action => "search"}, :method => :get) do %>
+            <%= text_field_tag :search, nil, placeholder: 'insert keywords' %>
+            <%#= submit_tag("Search") %>
+        <% end %>
+        <!--<input type="text" id="search-box" placeholder="insert keywords"/>
+        <button class="btn-with-shadow" id="search-btn" onClick="">Search</button>-->
       </div>
   <% end %>
 </div>

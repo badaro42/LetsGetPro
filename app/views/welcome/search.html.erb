@@ -1,0 +1,18 @@
+<h1>Search Results</h1>
+
+
+<% @user_res.each do |user| %>
+    <div>
+      <%#= image_tag(product.main_photo) %>
+      <h3><%= link_to user.name, user %></h3>
+      <%= sanitize(user.about_me) %>
+    </div>
+<% end %>
+
+<% @company_res.each do |company| %>
+    <div>
+      <%#= image_tag(product.main_photo) %>
+      <h3><%= link_to company.name, company %></h3>
+      <%= sanitize(company.description) %>
+    </div>
+<% end %>
