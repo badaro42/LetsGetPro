@@ -1,31 +1,19 @@
-<h1>Listing companies</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Logotype</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
   <tbody>
     <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= company.logotype %></td>
-        <td><%= company.description %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <b><%= company.name %></b>, <%= company.logotype %><br>
+        <%= company.description %><br>
+        <%= link_to 'Show', company %>, <%= link_to 'Edit', edit_company_path(company) %>, <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% @entries = CvEntry.where('company_id' => company.id) %>
+            <% @entries.each do |cv_entry| %>
+               <li><% User.find(cv_entry.user_id).name %></li>
+                <% puts('estou aqui') %>
+                 <% puts(User.find(cv_entry.user_id).name) %>
+            <% end %>
+      <br><br>
     <% end %>
   </tbody>
-</table>
-
 <br>
 
 <%= link_to 'New Company', new_company_path %>
