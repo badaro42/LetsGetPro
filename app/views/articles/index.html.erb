@@ -1,5 +1,50 @@
 <h1>Listing articles</h1>
 
+<% @outcoming_req = Contact.where('user_requesting_id' => current_user.id, 'state' => false) %>
+<% @incoming_req = Contact.where('target_user_id' => current_user.id, 'state' => false) %>
+<% @total = @incoming_req | @outcoming_req %>
+
+<% @total.each do |contact| %>
+    <% if User.find(contact.target_user_id) != current_user.id %>
+        <% @temp = User.find(contact.target_user_id) %>
+            <% @temp.articles.each do |article| %>
+            <%= @temp.name %><br>
+            <%= article.image %><br>
+            <%= article.link %><br>
+            <%= article.published %>
+            <%end %>
+    <% else %>
+        <% @temp = User.find(contact.request_user_id) %>
+            <% @temp.articles.each do |article| %>
+            <%= @temp.name %><br>
+            <%= article.image %><br>
+            <%= article.link %><br>
+            <%= article.published %>
+        <%end %>
+<% end %>
+
+<div>
+      <% @articles.each do |article| %>
+          <% User.find(article.user_id) %>
+          <%= User.find(contact.user_requesting_id).name %>
+            <%= article.text %>
+            <td><%= article.image %></td>
+            <td><%= article.link %></td>
+            <td><%= article.published %></td>
+            <td><%= link_to 'Show', article %></td>
+            <td><%= link_to 'Edit', edit_article_path(article) %></td>
+            <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      <ul>
+        <% if contact.state == false %>
+            <li><%= User.find(contact.target_user_id).name %>
+              <%= link_to 'Cancel Friendship', contact, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
+
 <table>
   <thead>
     <tr>

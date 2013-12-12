@@ -6,8 +6,6 @@
 <% @incoming_req = Contact.where('target_user_id' => current_user.id) %>
 <% @total = @incoming_req | @outcoming_req %>
 
-
-
 <div>
   <% @total.each do |contact| %>
       <ul>
