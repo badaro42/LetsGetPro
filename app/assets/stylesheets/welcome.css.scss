@@ -10,8 +10,46 @@ body {
 @media (min-width: 950px) {
   .main {
     margin: 0 auto;
-    width: 1000px;
+    width: 800px;
     border-radius: 5px;
     padding: 5px;
+  }
+}
+
+.style_image {
+  float: left
+}
+
+.main {
+  background-color: #033649;
+}
+
+/*tamanho de ecra normal*/
+@media (min-width: 950px) {
+  .main {
+    margin: 0 auto;
+    width: 800px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
+
+.container {
+  background-color: #E8DDCB;
+  padding: 8px;
+  border-radius: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+@media (min-width: 800px) {
+  .container {
+    width: 98%;
+  }
+}
+
+@media (max-width: 799px) {
+  .container {
+    width: 98%;
   }
 }
