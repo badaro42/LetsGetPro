@@ -1,80 +1,47 @@
 <h1>Listing articles</h1>
 
-<% @outcoming_req = Contact.where('user_requesting_id' => current_user.id, 'state' => false) %>
-<% @incoming_req = Contact.where('target_user_id' => current_user.id, 'state' => false) %>
-<% @total = @incoming_req | @outcoming_req %>
+<% @total = [current_user.id] %>
+<% @requests1 = Contact.where('user_requesting_id' => current_user.id) %>
+<% @requests2 = Contact.where('target_user_id' => current_user.id) %>
 
-<% @total.each do |contact| %>
-    <% if User.find(contact.target_user_id) != current_user.id %>
-        <% @temp = User.find(contact.target_user_id) %>
-            <% @temp.articles.each do |article| %>
-            <%= @temp.name %><br>
-            <%= article.image %><br>
-            <%= article.link %><br>
-            <%= article.published %>
-            <%end %>
-    <% else %>
-        <% @temp = User.find(contact.request_user_id) %>
-            <% @temp.articles.each do |article| %>
-            <%= @temp.name %><br>
-            <%= article.image %><br>
-            <%= article.link %><br>
-            <%= article.published %>
-        <%end %>
+<% @requests1.each do |temp| %>
+    <% @total.push(temp.target_user_id) %>
 <% end %>
 
-<div>
-      <% @articles.each do |article| %>
-          <% User.find(article.user_id) %>
-          <%= User.find(contact.user_requesting_id).name %>
+<% @requests2.each do |temp| %>
+    <% @total.push(temp.user_requesting_id) %>
+<% end %>
+
+<!--<#% @total = @requests1 | @requests2 %>  -->
+<% @total.uniq %>
+
+<!--<#% @total.each do |temp| %>
+    <#% puts(temp) %>
+<#% end %>
+<#% puts(@requests1.size) %>
+<#% puts(@requests2.size) %>-->
+
+<ul>
+<% @total.each do |contact| %>
+
+      <% @temp = User.find(contact) %>
+      <% @temp.articles.each do |article| %>
+          <li>
+            <b><%= @temp.name %></b> published on <%= article.published %>:
+            <a href=<%= article.link %>><%= article.title %></a>
+            <%= article.image %>
+            <br/>
             <%= article.text %>
-            <td><%= article.image %></td>
-            <td><%= article.link %></td>
-            <td><%= article.published %></td>
-            <td><%= link_to 'Show', article %></td>
-            <td><%= link_to 'Edit', edit_article_path(article) %></td>
-            <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
+          </li><br/>
       <% end %>
-      <ul>
-        <% if contact.state == false %>
-            <li><%= User.find(contact.target_user_id).name %>
-              <%= link_to 'Cancel Friendship', contact, method: :delete, data: {confirm: 'Are you sure?'} %></li>
-        <% end %>
-      </ul>
-  <% end %>
+
+<% end %>
+</ul>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Text</th>
-      <th>Image</th>
-      <th>Link</th>
-      <th>Published</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= User.find(article.user_id).name %></td>
-        <td><%= article.text %></td>
-        <td><%= article.image %></td>
-        <td><%= article.link %></td>
-        <td><%= article.published %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'New Article', new_article_path %>
+
+
+
