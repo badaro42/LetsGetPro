@@ -1,4 +1,10 @@
 
+<% if user_signed_in? %>
+<% else %>
+    <%= button_to 'Sign up', new_user_registration_path, :method => :get %>
+    <%= button_to 'Sign in', new_user_session_path, :method => :get %>
+<% end %>
+
 <%= image_tag "rui.jpg", :size => "200x200" %>
 <%= image_tag "badaro.jpg", :size => "200x200"%>
 Os nossos nomes são Rui Queirós e Rafael Bizarra, somos estudantes do Mestrado Integrado de Engenharia Informática da Faculdade de Ciências e Tecnologia da Universidade Nova de Lisboa somos os responsáveis por esta maravilhosa página.
