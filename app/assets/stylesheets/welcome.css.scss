@@ -48,8 +48,18 @@ body {
   }
 }
 
-@media (max-width: 799px) {
-  .container {
-    width: 98%;
-  }
+
+.user_nav {
+  background-color: #E8DDCB;
+  padding: 8px;
+  border-radius: 5px;
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+.logo_image{
+  display: inline-block;
+  width: 40%;
+  padding: 5px 5px 15px 5px;
 }
