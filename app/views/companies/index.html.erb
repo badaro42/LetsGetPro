@@ -5,10 +5,15 @@
     <%= company.description %>
     <br>
     <%= link_to 'Details', company %> | <%= link_to 'Edit', edit_company_path(company) %>
-     | <%= link_to 'Delete', company, method: :delete, data: {confirm: 'Are you sure?'} %>
+    | <%= link_to 'Delete', company, method: :delete, data: {confirm: 'Are you sure?'} %>
     <% @entries = CvEntry.where('company_id' => company.id) %>
-    <% @entries.each do |cv_entry| %>
-        <li><%= User.find(cv_entry.user_id).name %></li>
+    <% @total = [] %>
+    <% @entries.each do |temp| %>
+        <% @total.push(temp.user_id) %>
+    <% end %>
+    <% @total.uniq! %>
+    <% @total.each do |cv_entry| %>
+        <li><%= User.find(cv_entry).name %></li>
     <% end %>
     <br><br>
 <% end %>
