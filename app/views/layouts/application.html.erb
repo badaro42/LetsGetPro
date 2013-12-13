@@ -11,7 +11,7 @@
   <% if user_signed_in? %>
     <% @requests_count = Contact.where('target_user_id' => current_user.id, 'state' => true) %>
       <div class="user_nav">
-        <% @user = current_user.id %>
+        <% @user = current_user.id %><%= image_tag current_user.photo, :size => "75x75", :class => "style_image" %>
         <p>Olá <b><%= current_user.name %></b>. Tens <b><%= @requests_count.count %></b> pedidos pendentes</p>
         <%= button_to 'Sign out', destroy_user_session_path, :method => :delete, :class => "button_to" %>
         <%= button_to 'Show Info', user_path(@user), :method => :get, :class => "button_to" %>

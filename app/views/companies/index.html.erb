@@ -1,6 +1,6 @@
 <tbody>
 <% @companies.each do |company| %>
-    <b><%= company.name %></b>, <%= company.logotype %>
+    <%= image_tag company.logotype, :size => "50x50", :class => "style_image" %> <b><%= company.name %></b>
     <br>
     <%= company.description %>
     <br>

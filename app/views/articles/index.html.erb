@@ -1,5 +1,3 @@
-<h1>Listing articles</h1>
-
 <% @total = [current_user.id] %>
 <% @requests1 = Contact.where('user_requesting_id' => current_user.id) %>
 <% @requests2 = Contact.where('target_user_id' => current_user.id) %>
@@ -11,15 +9,7 @@
 <% @requests2.each do |temp| %>
     <% @total.push(temp.user_requesting_id) %>
 <% end %>
-
-<!--<#% @total = @requests1 | @requests2 %>  -->
 <% @total.uniq %>
-
-<!--<#% @total.each do |temp| %>
-    <#% puts(temp) %>
-<#% end %>
-<#% puts(@requests1.size) %>
-<#% puts(@requests2.size) %>-->
 
 <ul>
 <% @total.each do |contact| %>
@@ -29,9 +19,7 @@
           <li>
             <b><%= @temp.name %></b> published on <%= article.published %>:
             <a href=<%= article.link %>><%= article.title %></a>
-            <%= article.image %>
-            <%= image_tag article.picture.url %>
-            <%= link_to article.picture.url, article.picture.url %>
+            <%= image_tag article.image, :size => "50x50", :class => "style_image" %>
             <br/>
             <%= article.text %>
           </li><br/>
