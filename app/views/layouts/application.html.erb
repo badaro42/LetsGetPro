@@ -9,7 +9,7 @@
   </head>
   <body>
   <% if user_signed_in? %>
-    <% @requests_count = Contact.where('target_user_id' => current_user.id, 'state' => true) %>
+      <% @requests_count = Contact.where('target_user_id' => current_user.id, 'state' => true) %>
       <div class="user_nav">
         <% @user = current_user.id %><%= image_tag current_user.photo, :size => "75x75", :class => "style_image" %>
         Olá <b><%= current_user.name %></b>. <br>Tens <b
@@ -22,6 +22,9 @@
         <% end %>
       </div>
   <% end %>
+  <!--<#%= link_to '/' do %>
+      <#%= image_tag "logo.png", :class => "logo_image" %>
+  <#% end %> -->
   <%= image_tag "logo.png", :class => "logo_image" %>
   <div>
     <% if user_signed_in? %>
