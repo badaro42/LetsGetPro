@@ -12,21 +12,21 @@
 <% @total.uniq %>
 <div>
 
-    <% @total.each do |contact| %>
+  <% @total.each do |contact| %>
 
-        <% @temp = User.find(contact) %>
-        <% @temp.articles.each do |article| %>
-           <div class="news">
-              <%= image_tag @temp.photo, :size => "50x50", :class => "style_image" %>
-              <b><%= @temp.name %></b> published on <%= article.published %>:<br>
-              <%= image_tag article.image, :size => "50x50", :class => "style_image" %>
-              <a href=<%= article.link %>><%= article.title %></a>
-              <br/>
-              <%= article.text %>
-            </div>
+      <% @temp = User.find(contact) %>
+      <% @temp.articles.each do |article| %>
+          <div class="news">
+            <%= image_tag @temp.photo, :size => "50x50", :class => "style_image" %>
+            <b><%= @temp.name %></b> published on <%= article.published %>:<br>
+            <%= image_tag article.image, :size => "50x50", :class => "style_image" %>
+            <a href=<%= article.link %>><%= article.title %></a>
             <br/>
-        <% end %>
-    <% end %>
+            <%= article.text %>
+          </div>
+          <br/>
+      <% end %>
+  <% end %>
 
 </div>
 <%= button_to 'New Article', new_article_path, :method => :get, :class => "button_to" %>
