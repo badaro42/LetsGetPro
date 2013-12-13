@@ -2,7 +2,6 @@
 
 <% @user_res.each do |user| %>
     <div>
-      <%#= image_tag(product.main_photo) %>
       <p><b><%= link_to user.name, user %></b><br/>
       <%= user.about_me %></p>
     </div>
@@ -10,7 +9,6 @@
 
 <% @company_res.each do |company| %>
     <div>
-      <%#= image_tag(product.main_photo) %>
       <p><b><%= link_to company.name, company %></b><br/>
       <%= company.description %></p>
     </div>

@@ -4,7 +4,11 @@ class CvEntriesController < ApplicationController
   # GET /cv_entries
   # GET /cv_entries.json
   def index
-    @user_id = current_user.id
+    if (params[:id] == NIL)
+      @user_id = current_user.id
+    else
+      @user_id = params[:id]
+    end
     @cv_entries = CvEntry.where('user_id' => @user_id)
   end
 
@@ -64,14 +68,14 @@ class CvEntriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cv_entry
-      @cv_entry = CvEntry.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cv_entry
+    @cv_entry = CvEntry.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cv_entry_params
-      params.require(:cv_entry).permit(:company_id, :start_date, :end_date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cv_entry_params
+    params.require(:cv_entry).permit(:company_id, :start_date, :end_date)
+  end
 
 end

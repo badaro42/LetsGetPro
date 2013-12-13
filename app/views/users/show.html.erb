@@ -5,8 +5,11 @@
 <p>E-Mail: <%= @user.email %></p>
 <p>Data de nascimento: <%= @user.birth_date %></p>
 
-<p><%= link_to 'Edit', edit_user_registration_path(@user) %></p>
-
+<% if (@user.id == current_user.id) %>
+    <p><%= link_to 'Edit', edit_user_registration_path(@user) %></p>
+<% else %>
+    <p><%= link_to 'CV', :controller => 'cv_entries', :action => 'index', :id=>@user.id %></p>
+<% end %>
 
 
 

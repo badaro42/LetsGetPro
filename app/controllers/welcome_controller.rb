@@ -7,8 +7,6 @@ class WelcomeController < ApplicationController
   def search
     @user_res = []
     @company_res = []
-    #@users = User.all
-    #@companies = Company.all
     User.all.each do |user|
       if user.name.downcase.include? params[:search].downcase
         @user_res << user
