@@ -26,6 +26,7 @@ LetsGetPro::Application.routes.draw do
 
 
   get 'users/:id' => 'users#show'
+  get 'relatorio' => 'welcome#relatorio'
   get 'about' => 'welcome#about'
   get 'welcome/search'
 
