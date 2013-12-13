@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <%= image_tag @article.picture.url %>
+  <%= link_to @article.picture.url, @article.picture.url %>
+</p>
+
+<p>
   <strong>Link:</strong>
   <%= @article.link %>
 </p>

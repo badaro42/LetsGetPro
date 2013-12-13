@@ -30,6 +30,8 @@
             <b><%= @temp.name %></b> published on <%= article.published %>:
             <a href=<%= article.link %>><%= article.title %></a>
             <%= article.image %>
+            <%= image_tag article.picture.url %>
+            <%= link_to article.picture.url, article.picture.url %>
             <br/>
             <%= article.text %>
           </li><br/>
