@@ -5,11 +5,11 @@
 
     <div><%= f.label :nome %>
       <br/>
-      <%= f.text_field :name %></div>
+      <%= f.text_field :name, :autofocus => true %></div>
 
     <div><%= f.label :email %>
       <br/>
-      <%= f.email_field :email, :autofocus => true %></div>
+      <%= f.email_field :email %></div>
 
     <div><%= f.label :password %>
       <br/>
@@ -21,7 +21,7 @@
 
     <div><%= f.label :data_de_nascimento %>
       <br/>
-      <%= f.date_select :birth_date %></div>
+      <%= f.date_select :birth_date, start_year: 1950, end_year: Time.now.year %></div>
 
     <div><%= f.label :sobre_mim %>
       <br/>
