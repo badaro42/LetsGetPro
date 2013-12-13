@@ -16,4 +16,6 @@ class User < ActiveRecord::Base
   validates_format_of :photo, :presence => true, :with => %r{\.(png|jpg|jpeg|gif|bmp)$}i,
                       :message => "needs to be .jpg, .png, .jpeg, .gif, .bmp", :multiline => true
 
+
+
 end
