@@ -16,8 +16,8 @@
     <%= f.collection_select(:target_user_id, User.all, :id, :name)  %>
   </div>
   <div class="field">
-    <%= f.label :Pending? %><br>
-    <%= f.check_box :state %>
+    <%= f.label "Pending? (seleccionar se for para enviar, tirar se for para aceitar)" %><br>
+    <%= f.check_box :state, :checked => true %>
   </div>
   <div class="actions">
     <%= f.submit %>

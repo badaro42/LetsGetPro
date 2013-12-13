@@ -1,15 +1,29 @@
 <h1>Search Results</h1>
 
+<% if (@user_res.size == 0) %>
+    <% if (@company_res.size == 0) %>
+        <p>No results match your search</p>
+    <% end %>
+<% end %>
+
+<% if (@user_res.size > 0) %>
+    <br/>
+    <h2>USERS</h2>
+<% end %>
 <% @user_res.each do |user| %>
     <div>
       <p><b><%= link_to user.name, user %></b><br/>
-      <%= user.about_me %></p>
+        <%= user.about_me %></p>
     </div>
 <% end %>
 
+<% if (@company_res.size > 0) %>
+    <br/>
+    <h2>COMPANIES</h2>
+<% end %>
 <% @company_res.each do |company| %>
     <div>
       <p><b><%= link_to company.name, company %></b><br/>
-      <%= company.description %></p>
+        <%= company.description %></p>
     </div>
 <% end %>
