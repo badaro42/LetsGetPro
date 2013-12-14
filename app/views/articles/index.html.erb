@@ -10,31 +10,36 @@
     <% @total.push(temp.user_requesting_id) %>
 <% end %>
 <% @total.uniq %>
+
+<% @articles = [] %>
+<% @total.each do |contact| %>
+    <% @temp = User.find(contact) %>
+    <% @temp.articles.each do |article| %>
+        <% @articles.push(article) %>
+    <% end %>
+<% end %>
+<% puts(@articles.size) %>
+
+<% @articles.sort_by { |obj| obj.created_at } %>
+
 <div>
-
-  <% @total.each do |contact| %>
-
-      <% @temp = User.find(contact) %>
-      <% @temp.articles.each do |article| %>
-          <div class="news">
-            <%= image_tag @temp.photo, :size => "50x50", :class => "style_image" %>
-            <b><%= @temp.name %></b> published on <%= article.published %>:<br>
-            <%= image_tag article.image, :size => "50x50", :class => "style_image" %>
-            <a href=<%= article.link %>><%= article.title %></a>
-            <% if article.user_id == current_user.id %>
-                <%= link_to 'Edit', edit_article_path(article) %>
-            <% end %>
-            <br/>
-            <%= article.text %>
-          </div>
-          <br/>
-      <% end %>
+  <% @articles.each do |article| %>
+      <% @temp = User.find(article.user_id) %>
+      <div class="news">
+        <%= image_tag @temp.photo, :size => "50x50", :class => "style_image" %>
+        <b><%= @temp.name %></b> published on <%= article.published %>:<br>
+        <%= image_tag article.image, :size => "50x50", :class => "style_image" %>
+        <a href=<%= article.link %>><%= article.title %></a>
+        <% if article.user_id == current_user.id %>
+            <%= link_to 'Edit', edit_article_path(article) %>
+        <% end %>
+        <br/>
+        <%= article.text %>
+      </div>
+      <br/>
   <% end %>
 
 </div>
 <%= button_to 'New Article', new_article_path, :method => :get, :class => "button_to" %>
 
 </div>
-
-
-
