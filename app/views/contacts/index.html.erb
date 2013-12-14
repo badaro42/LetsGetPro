@@ -30,12 +30,13 @@
       <ul>
         <% if contact.state == true %>
             <% if contact.target_user_id == current_user.id %>
-                <li> <%= link_to User.find(contact.user_requesting_id).name, User.find(contact.user_requesting_id) %>
+                <li><%= link_to User.find(contact.user_requesting_id).name, User.find(contact.user_requesting_id) %>
                   <% @temp = contact %>
                   <%= form_for @temp, :method => :put do |f| %>
                       <%= f.hidden_field :state, :value => false %>
                       <%= f.submit "Accept", :class => "button_to" %>
                   <% end %>
+                  <%= button_to 'Cancel Request', contact, method: :delete, data: {confirm: 'Are you sure?'}, :class => "button_to" %>
                 </li>
             <% end %>
         <% end %>

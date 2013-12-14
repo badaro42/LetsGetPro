@@ -16,7 +16,7 @@
         <%= form_for(Contact.new, :url => "/contacts", :method => :post) do |f| %>
             <%= f.hidden_field :state, :value => true %>
             <%= f.hidden_field :target_user_id, :value => @user.id %>
-            <%= f.submit "Add Contact" %>
+            <%= f.submit "Add Contact", :class => "button_to" %>
         <% end %>
     <% else %>
         <% @temp = @friends.first %>
