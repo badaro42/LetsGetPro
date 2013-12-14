@@ -1,12 +1,16 @@
-<tbody>
+<h1>Companies</h1>
+<br/>
+
 <% @companies.each do |company| %>
     <%= image_tag company.logotype, :size => "50x50", :class => "style_image" %> <b><%= company.name %></b>
     <br>
     <%= company.description %>
     <br>
 
-    <%= link_to 'Details', company %> <% if company.company_owner == current_user.id %> | <%= link_to 'Edit', edit_company_path(company) %>
-    | <%= link_to 'Delete', company, method: :delete, data: {confirm: 'Are you sure?'} %><% end %>
+    <%= link_to 'Details', company %>
+    <% if company.company_owner == current_user.id %> | <%= link_to 'Edit', edit_company_path(company) %>
+        | <%= link_to 'Delete', company, method: :delete, data: {confirm: 'Are you sure?'} %>
+    <% end %>
 
     <% @entries = CvEntry.where('company_id' => company.id) %>
     <% @total = [] %>
@@ -14,12 +18,26 @@
         <% @total.push(temp.user_id) %>
     <% end %>
     <% @total.uniq! %>
-    <% @total.each do |cv_entry| %>
-        <li><%= User.find(cv_entry).name %></li>
+    <% @count1 = 0 %>
+    <% @count2 = 0 %>
+    <% if @total.size == 0 %>
+        <p><b>This company has no workers</b></p>
+    <% else %>
+        <% @total.each do |cv_entry| %>
+            <% @temp = CvEntry.where('user_id' => cv_entry, 'company_id' => company.id) %>
+            <% @temp = @temp.first %>
+
+            <% if (@temp.end_date.year == Date.today.year) && (@temp.end_date.month == Date.today.month) && @count1 == 0 %>
+                <h3>Current Workers</h3>
+                <% @count1 = 1 %>
+            <% elsif (@temp.end_date.year == Date.today.year) || (@temp.end_date.month == Date.today.month) && @count2 == 0 %>
+                <h3>Past Workers</h3>
+                <% @count2 = 1 %>
+            <% end %>
+            <li><%= link_to User.find(cv_entry).name, User.find(cv_entry) %></li>
+        <% end %>
     <% end %>
-    <br><br>
+    <br/><br/>
 <% end %>
-</tbody>
-<br>
 
 <%= button_to 'New Company', new_company_path, :method => :get, :class => "button_to" %>

@@ -7,11 +7,11 @@
       <div>
         <b><%= cv_entry.start_date.year %>/<%= cv_entry.start_date.month %> -
           <% if (cv_entry.end_date.month == Date.today.month) && (cv_entry.end_date.year == Date.today.year) %>
-              Presente:
+              Presente: </b>
           <% else %>
               <%= cv_entry.end_date.year %>/<%= cv_entry.end_date.month %></b>:
           <% end %>
-          <%= Company.find(cv_entry.company_id).name %>
+          <%= link_to Company.find(cv_entry.company_id).name, Company.find(cv_entry.company_id) %>
           (<%= link_to 'Add Task', new_task_path(:cv_entry => cv_entry.id) %> |
           <%= link_to 'Destroy', cv_entry, method: :delete, data: {confirm: 'Are you sure?'} %>)
           <% @tasks = Task.where('CVEntry_id' => cv_entry.id) %>
