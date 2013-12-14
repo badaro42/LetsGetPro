@@ -1,22 +1,44 @@
 <b><i>Relatório da Segunda Fase</i></b>
 
-<p>Para esta segunda fase utilizamos a gema devise para a criação de contas de utilizador e também para o tratamento de sessão podendo os utilizadores fazerem login e logout e aceder à sua conta. Na página inicial o utilizador pode registar uma conta, ou iniciar sessão, ou então consultar o About.
+<p>Para esta segunda fase utilizamos a gema devise para a criação de contas de utilizador e também para o tratamento de
+  sessão podendo os utilizadores fazerem login e logout e aceder à sua conta. Na página inicial o utilizador pode
+  registar uma conta, ou iniciar sessão, ou então consultar o About.
 
-<p>A pesquisa também se encontra funcional o utilizador poderá pesquisar informação relativa a outros utilizadores ou companhias. Basta para isso inserir um pequeno pedaço de texto para procedermos a uma pesquisa.
+<p>A pesquisa também se encontra funcional o utilizador poderá pesquisar informação relativa a outros utilizadores ou
+  companhias. Basta para isso inserir um pequeno pedaço de texto para procedermos a uma pesquisa. Encontrando um
+  utilizador podemos pedir para o adicionar aos contactos bastando para isso entrar no seu perfil e carregar no botão
+  indicado.
 
-<p>Na página das notícias para além do utilizador corrente poder criar uma nova notícia, pode ainda visualizar as notícias criadas por outros utilizadores desde que estes sejam um contacto seu. Para a criação da notícia dá-mos um título, um link para a imagem e outro para a notícia bem como uma pequena descrição.
+<p>Na página das notícias para além do utilizador corrente poder criar uma nova notícia, pode ainda visualizar as
+  notícias criadas por outros utilizadores desde que estes sejam um contacto seu. Para a criação da notícia dá-mos um
+  título, um link para a imagem e outro para a notícia bem como uma pequena descrição.
 
-<p>No botão Show Info é consultada a informação relativa ao utilizador corrente, abrindo uma página que para além da visualização de edição permite também editar o perfil.
+<p>No botão Show Info é consultada a informação relativa ao utilizador corrente, abrindo uma página que para além da
+  visualização de edição permite também editar o perfil.
 
-<p>Na página das empresas aparece a listagem das empresas do sistema bem como os utilizadores que já fizeram ou fazem parte dela.
+<p>Na página das empresas aparece a listagem das empresas do sistema bem como os utilizadores que já fizeram e fazem
+  parte dela separadamente.
 
-<p>No Curriculm Vitae conforme o nome indica, o utilizador pode consultar o Curriculum Vitae onde pode também adicionar novas entradas e funções que tenha desempenhado durante esse período.
+<p>No Curriculm Vitae conforme o nome indica, o utilizador pode consultar o Curriculum Vitae onde pode também adicionar
+  novas entradas e funções que tenha desempenhado durante esse período.
 
 <p><b>Modificações após a hora de entrega: </b>
-  <li>Apenas o utilizador que criou um artigo pode editar ou apagá-lo</li>
-  <li>Apenas o criador que criou a empresa pode editar ou apagá-la</li>
-  <li>Botão para relatório a aparecer em toda a aplicação</li>
-  <li>A data final do currículo tem que ser superior à data inicial</li>
-  <li>Possibilidade de aceder à informação do utilizador a partir dos contacos</li>
+<li>Apenas o utilizador que criou um artigo pode editar ou apagá-lo</li>
+<li>Apenas o criador da empresa pode editar ou apagá-la</li>
+<li>Botão para relatório a aparecer em toda a aplicação</li>
+<li>Validação para a data final do currículo tem que ser superior à data inicial</li>
+<li>Currículo aparece como data de ínicio-presente caso o utilizador ainda esteja em funções na empresa corrente</li>
+<li>Possibilidade de aceder à informação do utilizador a partir dos contactos (link_to)</li>
+<li>Página de Contactos mostra os contactos atuais, os pedidos de contactos recebidos e enviados permitindo remover
+  contactos, aceitar contactos e cancelar pedidos
+</li>
+<li>Página de Contactos mostra os contactos atuais, os pedidos de contactos recebidos e enviados permitindo remover
+  contactos, aceitar contactos e cancelar pedidos
+</li>
+<li>Impedir que um utilizador possa enviar mais que um pedido de contacto para o mesmo utilizador e para que não o possa adicionar mais que uma vez
+</li>
+<li>E mais alguns pormenores...
+</li>
+
 
 <%= button_to 'Back', profile_path, :method => :get, :class => "button_to" %>
