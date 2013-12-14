@@ -1,7 +1,5 @@
 <h1>Current Contacts</h1>
 
-<!--<#% @user_friends = Contact.where('user_requesting_id' => current_user.id) %>   -->
-
 <% @outcoming_req = Contact.where('user_requesting_id' => current_user.id) %>
 <% @incoming_req = Contact.where('target_user_id' => current_user.id) %>
 <% @total = @incoming_req | @outcoming_req %>
@@ -39,15 +37,25 @@
                       <%= f.submit "Accept", :class => "button_to" %>
                   <% end %>
                 </li>
-            <% else %>
-                <li> <%= link_to User.find(contact.target_user_id).name, User.find(contact.user_requesting_id) %>
-                  <%= button_to 'Cancel Request', contact, method: :delete, data: {confirm: 'Are you sure?'}, :class => "button_to" %></li>
             <% end %>
         <% end %>
       </ul>
   <% end %>
 </div>
 
-<br>
+<br/>
 
-<%= button_to 'New Contact', new_contact_path, :method => :get, :class => "button_to" %>
+<h1>Sent Requests</h1>
+
+<div>
+  <% @total.each do |contact| %>
+      <ul>
+        <% if contact.state == true %>
+            <% if contact.user_requesting_id == current_user.id %>
+                <li> <%= link_to User.find(contact.target_user_id).name, User.find(contact.target_user_id) %>
+                  <%= button_to 'Cancel Request', contact, method: :delete, data: {confirm: 'Are you sure?'}, :class => "button_to" %></li>
+            <% end %>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
