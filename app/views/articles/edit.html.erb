@@ -3,4 +3,5 @@
 <%= render 'form' %>
 
 <%= button_to 'Show', @article, :method => :get, :class => "button_to" %> |
-<%= button_to 'Back', articles_path, :method => :get, :class => "button_to" %>
+<%= button_to 'Back', articles_path, :method => :get, :class => "button_to" %> |
+<%= button_to 'Delete', @article, method: :delete, data: {confirm: 'Are you sure?'}, :class => "button_to" %>
