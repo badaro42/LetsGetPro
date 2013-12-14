@@ -12,11 +12,11 @@
         <% if contact.state == false %>
             <li>
               <% if contact.user_requesting_id != current_user.id %>
-                  <%= User.find(contact.user_requesting_id).name %>
+                  <%= link_to User.find(contact.user_requesting_id).name, User.find(contact.user_requesting_id) %>
               <% else %>
                   <%= User.find(contact.target_user_id).name %>
               <% end %>
-              <%= button_to 'Cancel Friendship', contact, method: :delete, data: {confirm: 'Are you sure?'} %>
+              <%= button_to 'Cancel Friendship', contact, method: :delete, data: {confirm: 'Are you sure?'}, :class => "button_to" %>
             </li>
         <% end %>
       </ul>
@@ -32,16 +32,16 @@
       <ul>
         <% if contact.state == true %>
             <% if contact.target_user_id == current_user.id %>
-                <li> <%= User.find(contact.user_requesting_id).name %>
+                <li> <%= link_to User.find(contact.user_requesting_id).name, User.find(contact.user_requesting_id) %>
                   <% @temp = contact %>
                   <%= form_for @temp, :method => :put do |f| %>
                       <%= f.hidden_field :state, :value => false %>
-                      <%= f.submit "Accept" %>
+                      <%= f.submit "Accept", :class => "button_to" %>
                   <% end %>
                 </li>
             <% else %>
-                <li> <%= User.find(contact.target_user_id).name %>
-                  <%= button_to 'Cancel Request', contact, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+                <li> <%= link_to User.find(contact.target_user_id).name, User.find(contact.user_requesting_id) %>
+                  <%= button_to 'Cancel Request', contact, method: :delete, data: {confirm: 'Are you sure?'}, :class => "button_to" %></li>
             <% end %>
         <% end %>
       </ul>
@@ -50,4 +50,4 @@
 
 <br>
 
-<%= button_to 'New Contact', new_contact_path, :method => :get %>
+<%= button_to 'New Contact', new_contact_path, :method => :get, :class => "button_to" %>

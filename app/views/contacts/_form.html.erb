@@ -13,11 +13,10 @@
 
   <div class="field">
     <%= f.label :target_user_id %><br>
-    <%= f.collection_select(:target_user_id, User.all, :id, :name)  %>
+    <%= f.collection_select(:target_user_id, User.where.not('id' => current_user.id), :id, :name)  %>
   </div>
   <div class="field">
-    <%= f.label "Pending? (seleccionar se for para enviar, tirar se for para aceitar)" %><br>
-    <%= f.check_box :state, :checked => true %>
+    <%= f.hidden_field :state, :value => true %>
   </div>
   <div class="actions">
     <%= f.submit %>

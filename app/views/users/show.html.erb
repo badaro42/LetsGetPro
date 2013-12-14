@@ -9,7 +9,12 @@
     <p><%= link_to 'Edit', edit_user_registration_path(@user) %></p>
 <% else %>
     <p><%= link_to 'CV', :controller => 'cv_entries', :action => 'index', :id=>@user.id %></p>
+    <%= form_for @user, :method => :post do |f| %>
+        <%= f.hidden_field :state, :value => true %>
+        <%= f.submit "Add Contact" %>
+    <% end %>
 <% end %>
+
 
 
 
