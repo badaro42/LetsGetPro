@@ -1,20 +1,26 @@
-<h1>Curriculum Vitae</h1> <br />
+<h1>Curriculum Vitae</h1> <br/>
 
 <div>
-  <% @ordered_entries = @cv_entries.sort_by { |obj| obj.start_date } %>
+  <% @ordered_entries = @cv_entries.sort_by { |obj| obj.end_date } %>
   <% @ordered_entries.reverse! %>
   <% @ordered_entries.each do |cv_entry| %>
-    <div>
-      <b><%= cv_entry.start_date.year %> - <td><%= cv_entry.end_date.year %></b>:
-        <%= Company.find(cv_entry.company_id).name %> (<%= link_to 'Add Task', new_task_path(:cv_entry => cv_entry.id)%> |
-        <%= link_to 'Destroy', cv_entry, method: :delete, data: { confirm: 'Are you sure?' } %>)
-      <% @tasks = Task.where('CVEntry_id' => cv_entry.id) %>
-      <ul>
-      <% @tasks.each do |task| %>
-          <li><b><%= task.position %></b>, <%= task.description %></li>
-      <% end %>
-      </ul>
-    </div>
+      <div>
+        <b><%= cv_entry.start_date.year %>/<%= cv_entry.start_date.month %> -
+          <% if (cv_entry.end_date.month == Date.today.month) && (cv_entry.end_date.year == Date.today.year) %>
+              Presente:
+          <% else %>
+              <%= cv_entry.end_date.year %>/<%= cv_entry.end_date.month %></b>:
+          <% end %>
+          <%= Company.find(cv_entry.company_id).name %>
+          (<%= link_to 'Add Task', new_task_path(:cv_entry => cv_entry.id) %> |
+          <%= link_to 'Destroy', cv_entry, method: :delete, data: {confirm: 'Are you sure?'} %>)
+          <% @tasks = Task.where('CVEntry_id' => cv_entry.id) %>
+          <ul>
+            <% @tasks.each do |task| %>
+                <li><b><%= task.position %></b>, <%= task.description %></li>
+            <% end %>
+          </ul>
+          </div>
   <% end %>
 </div>
 <br>

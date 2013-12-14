@@ -1,6 +1,6 @@
 <% @total = [current_user.id] %>
-<% @requests1 = Contact.where('user_requesting_id' => current_user.id) %>
-<% @requests2 = Contact.where('target_user_id' => current_user.id) %>
+<% @requests1 = Contact.where('user_requesting_id' => current_user.id, 'state' => false) %>
+<% @requests2 = Contact.where('target_user_id' => current_user.id, 'state' => false) %>
 
 <% @requests1.each do |temp| %>
     <% @total.push(temp.target_user_id) %>
