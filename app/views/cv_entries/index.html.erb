@@ -1,5 +1,6 @@
 <h1>Curriculum Vitae</h1> <br/>
 
+<% $martelo %>
 <div>
   <% @ordered_entries = @cv_entries.sort_by { |obj| obj.end_date } %>
   <% @ordered_entries.reverse! %>
@@ -12,8 +13,10 @@
               <%= cv_entry.end_date.year %>/<%= cv_entry.end_date.month %></b>:
           <% end %>
           <%= link_to Company.find(cv_entry.company_id).name, Company.find(cv_entry.company_id) %>
+          <% $martelo = cv_entry.id %>
+          <% if cv_entry.id == current_user.id %>
           (<%= link_to 'Add Task', new_task_path(:cv_entry => cv_entry.id) %> |
-          <%= link_to 'Destroy', cv_entry, method: :delete, data: {confirm: 'Are you sure?'} %>)
+          <%= link_to 'Destroy', cv_entry, method: :delete, data: {confirm: 'Are you sure?'} %>)<%end%>
           <% @tasks = Task.where('CVEntry_id' => cv_entry.id) %>
           <ul>
             <% @tasks.each do |task| %>
@@ -25,4 +28,6 @@
 </div>
 <br>
 
-<%= button_to 'New Entry', new_cv_entry_path, method: :get, :class => "button_to" %>
+<% if $martelo == current_user.id %>
+    <%= button_to 'New Entry', new_cv_entry_path, method: :get, :class => "button_to" %>
+<%end%>
